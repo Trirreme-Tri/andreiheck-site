@@ -14,6 +14,7 @@ O visitante abre qualquer página do site e já reconhece a identidade do trabal
 ## Escopo
 
 **Entra:**
+
 - Paleta de cores em custom properties CSS: fundo escuro, texto claro, um acento em tom quente (dourado/âmbar)
 - Tipografia: um par de fontes (título com personalidade + corpo legível) e uma escala de tamanhos
 - Tokens de espaçamento (uma escala simples, ex.: 4/8/16/24/32/48px)
@@ -21,6 +22,7 @@ O visitante abre qualquer página do site e já reconhece a identidade do trabal
 - Aplicação dos tokens em `src/styles/global.css`, herdada por todas as páginas sem estilo inline duplicado
 
 **Fora de escopo (fica para a spec de cada feature):**
+
 - Conteúdo e layout específico de Home, Portfólio, Serviços, Sobre, Blog, Agenda, Contato, Admin (F1–F9)
 - Logo definitivo — não existe ainda; se precisar de um wordmark provisório, é só tipografia, não uma marca desenhada
 - Imagens reais do cliente
