@@ -1,4 +1,5 @@
 import { NavLink, Outlet } from 'react-router-dom';
+import { Footer } from '../components/Footer';
 
 const links = [
   { to: '/', label: 'Home' },
@@ -32,6 +33,7 @@ export function Layout() {
       <main>
         <Outlet />
       </main>
+      <Footer />
     </>
   );
 }

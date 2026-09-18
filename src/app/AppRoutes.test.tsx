@@ -1,13 +1,15 @@
 import { describe, expect, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
+import { perfil } from '../content/profile';
+import { posts } from '../content/posts';
 import { AppRoutes } from './AppRoutes';
 
 const routes = [
-  { path: '/', heading: 'Home' },
+  { path: '/', heading: perfil.fraseImpacto },
   { path: '/portfolio', heading: 'Portfólio' },
   { path: '/servicos', heading: 'Serviços' },
-  { path: '/sobre', heading: 'Sobre' },
+  { path: '/sobre', heading: `Sobre ${perfil.nome}` },
   { path: '/blog', heading: 'Blog' },
   { path: '/agenda', heading: 'Agenda' },
   { path: '/contato', heading: 'Contato' },
@@ -25,15 +27,28 @@ describe('AppRoutes', () => {
     expect(screen.getByRole('heading', { name: heading })).toBeInTheDocument();
   });
 
-  it('shows the blog post page for /blog/:slug', () => {
+  it('shows the matching post for /blog/:slug', () => {
+    const [primeiroPost] = posts;
     render(
-      <MemoryRouter initialEntries={['/blog/exemplo']}>
+      <MemoryRouter initialEntries={[`/blog/${primeiroPost.slug}`]}>
         <AppRoutes />
       </MemoryRouter>,
     );
 
     expect(
-      screen.getByRole('heading', { name: 'Post: exemplo' }),
+      screen.getByRole('heading', { name: primeiroPost.titulo }),
+    ).toBeInTheDocument();
+  });
+
+  it('shows a not-found message for an unknown blog slug', () => {
+    render(
+      <MemoryRouter initialEntries={['/blog/nao-existe']}>
+        <AppRoutes />
+      </MemoryRouter>,
+    );
+
+    expect(
+      screen.getByRole('heading', { name: 'Post não encontrado' }),
     ).toBeInTheDocument();
   });
 
